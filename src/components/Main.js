@@ -15,10 +15,12 @@ let interval = null;
 const Main = () => {
   const inputRef = useRef(null);
   const outputRef = useRef(null);
+  const checkRef = useRef(null);
   const [duration, setDuration] = useState(60);
   const [started, setStarted] = useState(false);
   const [ended, setEnded] = useState(false);
   const [index, setIndex] = useState(0);
+  const [delIndex, setDelIndex] = useState(0);
   const [correctIndex, setCorrectIndex] = useState(0);
   const [errorIndex, setErrorIndex] = useState(0);
   const [quote, setQuote] = useState({});
@@ -64,25 +66,49 @@ const Main = () => {
   const handleKeyDown = (e) => {
     e.preventDefault();
     const { key } = e;
+
     const quoteText = quote.quote;
 
-    if (key === quoteText.charAt(index)) {
+    if ((key === quoteText.charAt(index)) && (outputRef.current.innerHTML=== checkRef.current.innerHTML)) {
       setIndex(index + 1);
       const currenChar = quoteText.substring(
         index + 1,
         index + quoteText.length
       );
       setInput(currenChar);
+     
       setCorrectIndex(correctIndex + 1);
       setIsError(false);
       outputRef.current.innerHTML += key;
+      checkRef.current.innerHTML += key;
+      
     } else {
-      if (allowedKeys.includes(key)) {
+      if (allowedKeys.includes(key) && key!=="Backspace") {
+      
         setErrorIndex(errorIndex + 1);
+        setDelIndex(delIndex + 1)
         setIsError(true);
-        outputRef.current.innerHTML += `<span class="text-danger">${key}</span>`;
+        // outputRef.current.innerHTML += `<span class="text-danger">${key}</span>`;
+        outputRef.current.innerHTML += key;
       }
     }
+    if(key==="Backspace"){
+      
+      if(delIndex!==0){
+        setDelIndex(delIndex - 1);
+        outputRef.current.innerHTML=outputRef.current.innerHTML.substring(0,outputRef.current.innerHTML.length-1) 
+      }
+      // if(checkRef.current.innerHTML!==outputRef.current.innerHTML){
+        
+      //   setDelIndex(delIndex - 1);
+      //   outputRef.current.innerHTML=outputRef.current.innerHTML.substring(0,outputRef.current.innerHTML.length-1) 
+      // }
+      
+  
+    
+
+    }
+    
 
     const timeRemains = ((60 - duration) / 60).toFixed(2);
     const _accuracy = Math.floor(((index - errorIndex) / index) * 100);
@@ -167,6 +193,9 @@ const Main = () => {
           />
 
           <InputArea value={outputRef} />
+          
+          <span ref={checkRef} style={{ display : "none" }} ></span>
+          
           <TypingSpeedInfo />
         </div>
       </div>

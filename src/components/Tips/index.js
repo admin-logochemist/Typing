@@ -13,7 +13,7 @@ const Tips = () => {
         </li>
         <li className={styles.tips}>Stretch your hands, neck, and shoulders</li>
         <li className={styles.tips}>Test touch typing</li>
-        <li className={styles.tips}>Don,t stress </li>
+        <li className={styles.tips}>Don't stress </li>
       </ul>
     </div>
   );
