@@ -1,0 +1,46 @@
+.rank{
+ color : #7966d7;
+ display: flex;
+ justify-content: center;
+ font-size: large;
+ /* font-weight: 400; */
+ text-align: center;
+}
+.main {
+    /* height: 100%;
+    /* width: 350px; */
+    height: 100% ;
+    width: 100%;
+    background-color: #201f1f;
+    border-radius: 8px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    
+   
+}
+.rankHeading{
+    display: flex;
+    justify-content: center;
+      color : #7966d7;
+
+
+  }
+  .list{
+    list-style-type : none;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    background-color: rgb(12, 7, 7);
+   
+  }
+  .scoreTable{
+    /* display: flex;
+    justify-content: center; */
+    /* height: 300px ;
+    width: 300px;
+    background-color: #000;
+    border-radius: 8px; */
+    /* padding-bottom: 100p x;  */
+   
+
+  }

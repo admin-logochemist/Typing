@@ -1,0 +1,9 @@
+.main {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #201f1f;
+  padding: 20px 0;
+}

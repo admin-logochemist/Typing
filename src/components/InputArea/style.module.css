@@ -1,0 +1,16 @@
+.inputArea_div {
+  background-color: rgb(32, 31, 31);
+  margin: auto;
+  margin-top: 30px;
+  color: #eeeeee;
+  font-size: 2rem;
+  font-weight: 400;
+  width: 80%;
+  min-height: 70px;
+  height: 100%;
+  border-radius: 10px;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
