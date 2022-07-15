@@ -9,11 +9,10 @@ import Statistics from "./Statistics";
 import Tips from "./Tips";
 import TypingSpeedInfo from "./TypingSpeedInfo";
 import Rank from "./Rank";
-import Myscore from "./Myscore";
 
 let interval = null;
 
-const Main = () => {
+const GuestMode = () => {
   const inputRef = useRef(null);
   const outputRef = useRef(null);
   const checkRef = useRef(null);
@@ -42,7 +41,6 @@ const Main = () => {
     setEnded(true);
     setStarted(false);
     clearInterval(interval);
-
   };
 
   const setTimer = () => {
@@ -146,7 +144,7 @@ const Main = () => {
         accuracy={accuracy}
         errorIndex={errorIndex}
       />
-      <Myscore/>
+      
 
       {/* Start Button */}
       {ended || started ? (
@@ -209,4 +207,4 @@ const Main = () => {
     </div>
   );
 };
-export default Main;
+export default GuestMode;

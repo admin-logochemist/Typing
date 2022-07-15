@@ -33,12 +33,12 @@
     box-shadow: inset 0 0 0 200px rgba(255,255,255,0.2);
     filter: blur(10px);
   }
-  form img{
+  .form img{
     width: 120px;
     height: 120px;
     border-radius: 100%;
   }
-  form{
+  .form{
     text-align: center;
     position: absolute;
     left: 50%;
@@ -55,21 +55,60 @@
     padding-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
-    color: rgba(255,255,255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
   }
-  input[type="submit"]{
+  Button{
     border: 0;
-    border-radius: 8px;
-    padding-bottom: 0;
-    height: 60px;
+    border-radius: 50px !important;
+    padding-bottom: 0px;
+    height: 50px;
+    width: 150px;
+    margin-top: 10px !important;
     background: #df2359;
-    color: white;
+    color: rgb(255, 255, 255);
     cursor: pointer;
     transition: all 600ms ease-in-out;
   }
-  input[type="submit"]:hover{
+  Button:hover{
     background: #C0392B;
   }
   span a{
     color: rgba(255,255,255, 0.8);
   }
+
+.form{
+    border-radius: 12px;
+    background-color: rgba(231, 218, 218, 0.404);
+    width: 23%;
+    padding: 16px;
+    height: 392px;
+    line-height: 2;
+}
+.form input{
+  margin-top: 10px !important;
+}  
+
+  /* .button{
+    float: right;
+
+  }
+
+  
+.button{
+  margin-top: 39px;
+  height: 35px;
+  width: 10%;
+  font-weight: 600;
+  font-size: 12px;
+  background: bottom;
+  color: white;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  border: none;
+  }
+
+.button:hover{
+  background: rgb(117, 68, 68);
+
+  } */
+  
