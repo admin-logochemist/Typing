@@ -156,4 +156,5 @@ export const allowedKeys = [
   ",",
   ".",
   "Backspace",  
+  "Tab"
 ];

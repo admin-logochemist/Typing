@@ -13,6 +13,7 @@ const Statistics = ({
 }) => {
   return (
     <div className={styles.main}>
+      <StatisticsItem name="" value={"Score"} />
       <StatisticsItem name="Last Score" value={lastScore} />
       <StatisticsItem name="WPM" value={wpm} />
       <StatisticsItem name="CPM" value={cpm} />

@@ -18,49 +18,50 @@ const Myscore = ({
     setUsersName(((users!==null)&&(users!==undefined)) ? users : "Login")
   }, [])
   return (
-    <div className={styles.main}>
-      <h1 className={styles.rankHeading}>My Score</h1>
-      <div className={styles.scoreTable}>
-        <Table >
+    <></>
+    // <div className={styles.main}>
+    //   <h1 className={styles.rankHeading}>My Score</h1>
+    //   <div className={styles.scoreTable}>
+    //     <Table >
 
          
 
-          <th>
-            <span className={styles.rank}>Name</span>
-          </th>
-          <th>
-            <span className={styles.rank}>Id</span>
-          </th>
+    //       <th>
+    //         <span className={styles.rank}>Name</span>
+    //       </th>
+    //       <th>
+    //         <span className={styles.rank}>Id</span>
+    //       </th>
 
-          <th>
-            <span className={styles.rank}>Score</span>
-          </th>
+    //       <th>
+    //         <span className={styles.rank}>Score</span>
+    //       </th>
 
 
-          <tr>
+    //       <tr>
 
-            <td>
-              <span className={styles.rank}>{usersName}</span>
-            </td>
-            <td>
-              <span className={styles.rank}>sad1a2sd1aa1</span>
-            </td>
+    //         <td>
+    //           <span className={styles.rank}>{usersName}</span>
+    //         </td>
+    //         <td>
+    //           <span className={styles.rank}>sad1a2sd1aa1</span>
+    //         </td>
 
-            <td>
-              <span className={styles.rank}>89</span>
-            </td></tr>
+    //         <td>
+    //           <span className={styles.rank}>89</span>
+    //         </td></tr>
 
 
 
 
 
           
-        </Table>
-      </div>
+    //     </Table>
+    //   </div>
 
 
 
-    </div>
+    // </div>
   );
 };
 

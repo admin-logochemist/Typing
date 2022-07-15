@@ -18,7 +18,7 @@ const Footer = () => {
       >
        
       </a>{" "}
-      © 2022. Built with{" "}
+      © 2022. Built with Binary Chemist{" "}
       
      
     </div>

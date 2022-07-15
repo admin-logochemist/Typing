@@ -38,6 +38,8 @@ const Main = () => {
     setInput(newQuote.quote);
   }, []);
 
+
+  
   const handleEnd = () => {
     setEnded(true);
     setStarted(false);
@@ -106,7 +108,7 @@ const Main = () => {
       //   outputRef.current.innerHTML=outputRef.current.innerHTML.substring(0,outputRef.current.innerHTML.length-1) 
       // }
       
-  
+      
     
 
     }
@@ -136,7 +138,7 @@ const Main = () => {
   }, []);
 
   return (
-    <div style={{backgroundColor: "#7966d7"}}>
+    <div style={{backgroundColor: "black"}}>
       <Header />
       <Statistics
         cpm={cpm}
@@ -175,15 +177,15 @@ const Main = () => {
         </div>
       )}
       {/* Start Button end */}
+      <div className="container-fluid">
 
       <div className={styles.container}>
-        <div className={styles.leftSideInContainer}>
-          {" "}
-          <Rank />
-
-          <Tips />{" "}
-        </div>
+       <div className={styles.leftSideInContainer}>
+           {" "}
+           {/* "<Rank <Tips /> */}
+         </div>
         <div className={styles.rightSideInContainer}>
+        
           <ShowText
             quote={quote}
             started={started}
@@ -201,11 +203,11 @@ const Main = () => {
           <TypingSpeedInfo />
         </div>
       </div>
+      </div>
 
-      {/*
-    
+        
       <Footer />
-    */} 
+     
     </div>
   );
 };

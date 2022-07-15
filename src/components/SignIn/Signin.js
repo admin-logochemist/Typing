@@ -51,14 +51,16 @@ const SignIn = () => {
 
 <div className={styles.main}>
 <div id="container">
- <div className="container">
+ <div className={styles.container}>
   
-<button className={styles.button}> <Link to='/GuestMode'>Guest Mode</Link></button>
+<button className={styles.buttong} onClick={()=>navigate("/GuestMode")}>Guest Mode</button>
+<button className={styles.buttong} onClick={()=>navigate("/SignUp")}> SIGN UP</button>
 <div className={styles.form}>
 <img src="https://bit.ly/2tlJLoz" className={styles.imgs} /><br />
-<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
-<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} /><br />
-<button  onClick={()=>logintoApp()}> SIGN IN</button>
+<input type="text" placeholder="Email@example.com" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
+<input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+<button  onClick={()=>logintoApp()}> SIGN IN</button>  
+
 </div>
 </div>
 </div>
