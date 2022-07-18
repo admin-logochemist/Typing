@@ -16,7 +16,7 @@ let interval = null;
 const App = () => {
  return(
   <div>
- <Main />
+ <SignIn />
  </div>
   );
 };
