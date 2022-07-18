@@ -10,7 +10,7 @@ import Tips from "./Tips";
 import TypingSpeedInfo from "./TypingSpeedInfo";
 import Rank from "./Rank";
 import Myscore from "./Myscore";
-
+import { getFirestore,onSnapshot,query,limit,orderBy, getDocs, where , addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore'; 
 let interval = null;
 
 const Main = () => {
@@ -28,10 +28,49 @@ const Main = () => {
   const [input, setInput] = useState("");
   const [cpm, setCpm] = useState(0);
   const [wpm, setWpm] = useState(0);
+  const db=getFirestore()
   const [accuracy, setAccuracy] = useState(0);
   const [isError, setIsError] = useState(false);
   const [lastScore, setLastScore] = useState("0");
+  const [usersName, setUsersName ] = useState("");
+  const [usersEmail, setusersEmail ] = useState("");
+  const [usersScore, setusersScore ] = useState("");
+  const [visible, setVisible] = useState(false)
+  // const [userModal, setUserModal] = useState()
+  const [changeData, setChangeData] = useState()
+  const [fdata, setFData] = useState()
+  const [userData, setUserData] = useState([])
+  const [status, setStatus] = useState(false)
+  const [flag,setFlag] = useState(false)
+  var data = [];
+  const getUser = async () => {
+   
+    const querySnapshot = await getDocs(collection(db, ""));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      data.push({ id: doc.id, ...doc.data() })
+      // setUserData(userData=>[...userData,doc.data()])
+    })
+    const filterData = data
+    if (filterData) {
+      setUserData(filterData)
+    }
+  }
 
+  useEffect(() => {
+    getUser();
+    // Perform localStorage action
+    const users = localStorage.getItem('displayName')
+    console.log(users,"local storage")
+    setUsersName(((users!==null)&&(users!==undefined)) ? users : "Login")
+    const uemail = localStorage.getItem('email')
+    console.log(uemail,"local storage")
+    setusersEmail(((uemail!==null)&&(uemail!==undefined)) ? uemail : "Login")
+    const wpm = localStorage.getItem('wpm')
+    console.log(wpm,"local storage")
+    setusersScore(((wpm!==null)&&(wpm!==undefined)) ? wpm : "Login")
+  }, []);
   useEffect(() => {
     const newQuote = random(quotesArray);
     setQuote(newQuote);
@@ -40,10 +79,31 @@ const Main = () => {
 
 
   
-  const handleEnd = () => {
+  const handleEnd = async() => {
     setEnded(true);
     setStarted(false);
     clearInterval(interval);
+    onSnapshot(
+      query(collection(db,"LeaderBoards"), orderBy("score", "desc"), limit(3) ), (snapshot)=>{
+        
+        setUserData(snapshot.docs.map(doc => ({
+          data: doc.data()
+        })))
+       
+      })
+      if(userData[0]?.data.email === usersEmail){
+        console.log("email");
+      }
+    //   if(userData[0].data.email !=usersEmail){
+    // const docRef = await addDoc(collection(db, 'LeaderBoards'), {
+    //   email:usersEmail,
+    //   score:usersScore,
+    //   name:usersName,
+       
+    // })
+    //   }else{
+    //     console.log("update me");
+    //   }
 
   };
 
@@ -148,7 +208,7 @@ const Main = () => {
         accuracy={accuracy}
         errorIndex={errorIndex}
       />
-      <Myscore/>
+ 
 
       {/* Start Button */}
       {ended || started ? (

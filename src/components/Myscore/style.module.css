@@ -1,10 +1,11 @@
 .rank{
- color : #7966d7;
+ color : #eeff07;
  display: flex;
  justify-content: center;
- font-size: large;
+ font-size: 30px;
  /* font-weight: 400; */
  text-align: center;
+ 
 }
 .main {
     /* height: 100%;
@@ -15,13 +16,21 @@
     border-radius: 8px;
     padding-bottom: 20px;
     margin-bottom: 10px;
+    margin-top: 70px;
+    border: 5px dashed red;
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
     
    
 }
 .rankHeading{
     display: flex;
     justify-content: center;
-      color : #7966d7;
+      color : #fc0000;
+      font-weight: 700;
+      font-size: 60px;
 
 
   }
