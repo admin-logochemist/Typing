@@ -9,10 +9,11 @@ import Statistics from "./Statistics";
 import Tips from "./Tips";
 import TypingSpeedInfo from "./TypingSpeedInfo";
 import Rank from "./Rank";
+import Myscore from "./Myscore";
 
 let interval = null;
 
-const GuestMode = () => {
+const Main = () => {
   const inputRef = useRef(null);
   const outputRef = useRef(null);
   const checkRef = useRef(null);
@@ -37,10 +38,13 @@ const GuestMode = () => {
     setInput(newQuote.quote);
   }, []);
 
+
+  
   const handleEnd = () => {
     setEnded(true);
     setStarted(false);
     clearInterval(interval);
+
   };
 
   const setTimer = () => {
@@ -104,7 +108,7 @@ const GuestMode = () => {
       //   outputRef.current.innerHTML=outputRef.current.innerHTML.substring(0,outputRef.current.innerHTML.length-1) 
       // }
       
-  
+      
     
 
     }
@@ -134,7 +138,7 @@ const GuestMode = () => {
   }, []);
 
   return (
-    <div style={{backgroundColor: "#7966d7"}}>
+    <div style={{backgroundColor: "black"}}>
       <Header />
       <Statistics
         cpm={cpm}
@@ -144,7 +148,7 @@ const GuestMode = () => {
         accuracy={accuracy}
         errorIndex={errorIndex}
       />
-      
+      <Myscore/>
 
       {/* Start Button */}
       {ended || started ? (
@@ -173,15 +177,15 @@ const GuestMode = () => {
         </div>
       )}
       {/* Start Button end */}
+      <div className="container-fluid">
 
       <div className={styles.container}>
-        <div className={styles.leftSideInContainer}>
-          {" "}
-          <Rank />
-
-          <Tips />{" "}
-        </div>
+       <div className={styles.leftSideInContainer}>
+           {" "}
+           {/* "<Rank <Tips /> */}
+         </div>
         <div className={styles.rightSideInContainer}>
+        
           <ShowText
             quote={quote}
             started={started}
@@ -199,12 +203,12 @@ const GuestMode = () => {
           <TypingSpeedInfo />
         </div>
       </div>
+      </div>
 
-      {/*
-    
+        
       <Footer />
-    */} 
+     
     </div>
   );
 };
-export default GuestMode;
+export default Main;

@@ -27,13 +27,13 @@ const users = null;
   return (
     <div className={styles.main} style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }} >
       <div>
-        <h1 className={styles.heading}>Typing Test 🚀⌨️ </h1>
+        <h1 className={styles.heading}>Typing Test  </h1>
         <p className={styles.subHeading}>The one minute typing challenge 🔥</p>
       </div>
-      <div style={{marginTop : 50 }}>
-      <li> {`${usersName}`}</li>
-      {((usersName!==null)&&(usersName!=="Login")) ? <Button  onClick={signOut}> Logout</Button>
-       : (usersName==="Login") ? <Button  onClick={()=> navigate("/")}> Login</Button> : <Button  onClick={()=> navigate("/")}> Login</Button>}
+      <div style={{marginTop : 30 }}>
+     
+      {((usersName!==null)&&(usersName!=="Login")) ?  <div><span className={styles.zigor}>Hello! &nbsp; {`${usersName}`}</span><Button className={styles.btnpb}  onClick={signOut}> Logout</Button></div>
+       : (usersName==="Login") ? <Button className={styles.btnpb}  onClick={()=> navigate("/")}> Login</Button> : <Button className={styles.btnpb}  onClick={()=> navigate("/")}> Login</Button>}
     
        </div>
       

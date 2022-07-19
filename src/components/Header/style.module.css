@@ -1,19 +1,48 @@
 .main {
   /* text-align: center; */
-  background-color: #201f1f;
+  /* background-image: url(https://c4.wallpaperflare.com/wallpaper/296/1022/565/circles-background-grid-black-white-wallpaper-preview.jpg); */
+  background-color: black;
+  padding: 40px;
 }
 
 .heading {
   font-size: 45px;
   margin: 20px 0 0;
   padding: 0;
-  color : #7966d7
+  color : #ffffff
 }
 
 .subHeading {
   margin-top: 0;
   font-size: 24px;
   font-weight: 600;
-  color : #7966d7
+  color : #ffffff
+
+}
+
+.btnpb{
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: center !important;
+  background-color: #201f1f !important;
+  padding: 11px !important;
+  border-radius: 20px !important;
+  border: solid 5px #512da8 !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  font-size: 20px !important;
+  color: white !important;
+}
+.btnpb:hover{
+  background-color: #fb0000 !important;
+  
+}
+.zigor{
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+
 
 }

@@ -14,9 +14,9 @@ import SignIn from "./Signin";
 
 const SignUp = () => {
 
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState()
     const [password, setPassword] = useState("")
-    const [name, setName] = useState("");
+    const [name, setName] = useState();
     const [uid, setUids] = useState("");
     
     const navigate=useNavigate()
@@ -58,8 +58,8 @@ const SignUp = () => {
 <img src="https://bit.ly/2tlJLoz" className={styles.imgs} /><br />
 <div className="mt-2">
 <input type="text"  placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/><br />
-<input type="text"  placeholder="Example@gmail.com" value={email} onChange={(e)=>setEmail(e.target.value)} /><br />
-<input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br />
+<input autocomplete="off" type="text"  placeholder="Example@gmail.com" value={email} onChange={(e)=>setEmail(e.target.value)} /><br />
+<input type="password" autocomplete="off" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br />
 <button onClick={registers}>SIGN UP</button>   <br />
 </div>
 </div>
