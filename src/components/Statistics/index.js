@@ -27,11 +27,11 @@ const Statistics = ({
   return (
    
     <div className={styles.main}>
-    <div className={styles.stakszo}>
-    <h3>Name:{usersName}</h3>
-    <h3>Email:{usersEmail}</h3>
-    <h3>Score:{lastScore}</h3>
-    </div>
+  {/*  <div className={styles.stakszo}>
+    <p className={styles.forot}>Name:{usersName}</p>
+    <p className={styles.forot}>Email:{usersEmail}</p>
+    <p className={styles.forot}>Score:{lastScore}</p>
+  </div>*/}
 
       <StatisticsItem name="" value={"Score"} />
       <StatisticsItem name="Last Score" value={lastScore} />

@@ -6,7 +6,12 @@
   justify-content: center;
   background-color: #201f1f;
   padding: 20px 0;
+  
 }
 .stakszo{
   color: rgb(255, 255, 255);
+}
+.forot{
+  margin-top: 25px;
+  font-size: 15px;
 }

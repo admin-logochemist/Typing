@@ -54,9 +54,11 @@ const Myscore = ({
   }, []);
   
   return (
-   
+   <div className="container">
+   <div className="row">
+   <div className={styles.col}>
     <div className={styles.main}>
-      <h1 className={styles.rankHeading}>Leader Boards</h1>
+      <p className={styles.rankHeading}>Leader Boards</p>
       <div className={styles.scoreTable}>
         <Table >
 
@@ -104,6 +106,9 @@ const Myscore = ({
 
 
 
+      </div>
+      </div>
+      </div>
     </div>
   );
 };
