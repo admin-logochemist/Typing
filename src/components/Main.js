@@ -11,6 +11,9 @@ import TypingSpeedInfo from "./TypingSpeedInfo";
 import Rank from "./Rank";
 import Myscore from "./Myscore";
 import { getFirestore, onSnapshot, query, limit, orderBy, getDocs, where, addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
+
+import TipsPopup from './Tips/index';
+
 let interval = null;
 
 const Main = () => {
@@ -79,6 +82,15 @@ const Main = () => {
 
 
   }, []);
+
+  const[timedPopup , setTimedPopup] = useState(false);
+useEffect(()=>{
+  setTimeout(() =>{
+    setTimedPopup(true);
+  }, 2000);
+  
+},[]);
+
 
 
 
@@ -220,6 +232,9 @@ const Main = () => {
 
   return (
     <div style={{ backgroundColor: "black" }}>
+
+    <TipsPopup trigger={timedPopup} setTrigger={setTimedPopup}/>
+
       <Header />
       <Statistics
         cpm={cpm}

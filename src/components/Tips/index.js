@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "./style.module.css";
 
-const Tips = () => {
-  return (
+const Tips = (props) => {
+  return  (props.trigger) ? (
+    <div className={styles.popup}>
+    <div className={styles.popupinner}>
+    
+
     <div className={styles.main}>
       <p className={styles.heading}>Tips..!</p>
       <ul className={styles.tips_container}>
@@ -15,8 +19,12 @@ const Tips = () => {
         <li className={styles.tips}>Test touch typing</li>
         <li className={styles.tips}>Don't stress </li>
       </ul>
+      <button className={styles.closeebtn} onClick={()=> props.setTrigger(false)}>close</button>
+      {props.children}
     </div>
-  );
+    </div>
+    </div>
+  ) : "";
 };
 
 export default Tips;

@@ -11,6 +11,8 @@ import TypingSpeedInfo from "./TypingSpeedInfo";
 import Rank from "./Rank";
 import Myscore from "./Myscore";
 
+import TipsPopup from './Tips/index';
+
 let interval = null;
 
 const Main = () => {
@@ -37,6 +39,15 @@ const Main = () => {
     setQuote(newQuote);
     setInput(newQuote.quote);
   }, []);
+
+  const[timedPopup , setTimedPopup] = useState(false);
+useEffect(()=>{
+  setTimeout(() =>{
+    setTimedPopup(true);
+  }, 2000);
+  
+},[]);
+
 
 
   
@@ -139,6 +150,8 @@ const Main = () => {
 
   return (
     <div style={{backgroundColor: "black"}}>
+    <TipsPopup trigger={timedPopup} setTrigger={setTimedPopup}/>
+   
       <Header />
       <Statistics
         cpm={cpm}

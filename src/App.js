@@ -12,6 +12,9 @@ import Main from "./components/Main";
 import GuestMode from "./components/GuestMode";
 import SignIn from "./components/SignIn/Signin";
 import SignUp from "./components/SignIn/SignUp";
+
+
+
 import {
   Route,
   Routes,
@@ -20,15 +23,20 @@ import {
 
 
 const App = () => {
+
+
+
   return (
-   
+
+
+
       <Routes>
       <Route path='/' element={<SignIn />} />
         <Route path='/Main' element={<Main />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route path='/GuestMode' element={<GuestMode />} />
       </Routes>
-  
+     
   );
 };
 
