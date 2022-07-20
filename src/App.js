@@ -30,7 +30,7 @@ const App = () => {
     console.log(users, "local storage")
     setUsersName(((users !== null) && (users !== undefined)) ? users : users)
     const uemail = localStorage.getItem('email')
-    console.log(uemail, "local storage")
+    console.log(uemail, "")
     setusersEmail(((uemail !== null) && (uemail !== undefined)) ? uemail : uemail)
 
   }, []);
