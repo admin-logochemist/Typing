@@ -32,6 +32,7 @@ const Myscore = ({
           data: doc.data()
         })))
      console.log(userData[0]?.data.email);
+     
 
       })
       if(userData[0]?.data.email != usersEmail){
@@ -51,6 +52,7 @@ const Myscore = ({
     const wpm = localStorage.getItem('wpm')
     console.log(wpm,"local storage")
     setusersScore(((wpm!==null)&&(wpm!==undefined)) ? wpm : "Login")
+    
   }, []);
   
   return (

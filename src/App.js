@@ -20,12 +20,6 @@ import {
 
 
 const App = () => {
-<<<<<<< HEAD
- return(
-  <div>
- <SignIn />
- </div>
-=======
   return (
    
       <Routes>
@@ -35,7 +29,6 @@ const App = () => {
         <Route path='/GuestMode' element={<GuestMode />} />
       </Routes>
   
->>>>>>> 53cfc44f1dc52d8d66d38122db04458faf1d55bc
   );
 };
 

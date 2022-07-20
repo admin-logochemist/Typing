@@ -148,7 +148,6 @@ const Main = () => {
         accuracy={accuracy}
         errorIndex={errorIndex}
       />
-      <Myscore/>
 
       {/* Start Button */}
       {ended || started ? (

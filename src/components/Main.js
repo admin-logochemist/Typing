@@ -10,7 +10,7 @@ import Tips from "./Tips";
 import TypingSpeedInfo from "./TypingSpeedInfo";
 import Rank from "./Rank";
 import Myscore from "./Myscore";
-import { getFirestore,onSnapshot,query,limit,orderBy, getDocs, where , addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore'; 
+import { getFirestore, onSnapshot, query, limit, orderBy, getDocs, where, addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
 let interval = null;
 
 const Main = () => {
@@ -28,82 +28,65 @@ const Main = () => {
   const [input, setInput] = useState("");
   const [cpm, setCpm] = useState(0);
   const [wpm, setWpm] = useState(0);
-  const db=getFirestore()
+  const db = getFirestore()
   const [accuracy, setAccuracy] = useState(0);
   const [isError, setIsError] = useState(false);
   const [lastScore, setLastScore] = useState("0");
-  const [usersName, setUsersName ] = useState("");
-  const [usersEmail, setusersEmail ] = useState("");
-  const [usersScore, setusersScore ] = useState("");
+  const [usersName, setUsersName] = useState("");
+  const [usersEmail, setusersEmail] = useState("");
+  const [usersScore, setusersScore] = useState("");
   const [visible, setVisible] = useState(false)
   // const [userModal, setUserModal] = useState()
   const [changeData, setChangeData] = useState()
   const [fdata, setFData] = useState()
   const [userData, setUserData] = useState([])
+  const [checkUserData, setCheckUserData] = useState([])
   const [status, setStatus] = useState(false)
-  const [flag,setFlag] = useState(false)
+  const [flag, setFlag] = useState(false)
   var data = [];
-  const getUser = async () => {
-   
-    const querySnapshot = await getDocs(collection(db, ""));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      data.push({ id: doc.id, ...doc.data() })
-      // setUserData(userData=>[...userData,doc.data()])
+  const getUser =   () => {
+     onSnapshot(
+      query(collection(db, "LeaderBoards"), orderBy("score", "desc"), limit(3)), (snapshot) => {
+        
+        setUserData(snapshot.docs.map(doc => ({
+          
+           id: doc.id, ...doc.data() 
+      })))
+      
     })
-    const filterData = data
-    if (filterData) {
-      setUserData(filterData)
-    }
   }
-
+  
   useEffect(() => {
-    getUser();
-    // Perform localStorage action
+    
+    getUser()
+    console.log(userData,"userData")
     const users = localStorage.getItem('displayName')
-    console.log(users,"local storage")
-    setUsersName(((users!==null)&&(users!==undefined)) ? users : "Login")
+    console.log(users, "local storage")
+    setUsersName(((users !== null) && (users !== undefined)) ? users : "Login")
     const uemail = localStorage.getItem('email')
-    console.log(uemail,"local storage")
-    setusersEmail(((uemail!==null)&&(uemail!==undefined)) ? uemail : "Login")
+    console.log(uemail, "local storage")
+    setusersEmail(((uemail !== null) && (uemail !== undefined)) ? uemail : "Login")
     const wpm = localStorage.getItem('wpm')
-    console.log(wpm,"local storage")
-    setusersScore(((wpm!==null)&&(wpm!==undefined)) ? wpm : "Login")
+    console.log(wpm, "local storage")
+    setusersScore(((wpm !== null) && (wpm !== undefined)) ? wpm : "Login")
   }, []);
   useEffect(() => {
     const newQuote = random(quotesArray);
     setQuote(newQuote);
     setInput(newQuote.quote);
+
+
+
+
   }, []);
 
 
-  
-  const handleEnd = async() => {
+
+  const handleEnd = async () => {
     setEnded(true);
     setStarted(false);
     clearInterval(interval);
-    onSnapshot(
-      query(collection(db,"LeaderBoards"), orderBy("score", "desc"), limit(3) ), (snapshot)=>{
-        
-        setUserData(snapshot.docs.map(doc => ({
-          data: doc.data()
-        })))
-       
-      })
-      if(userData[0]?.data.email === usersEmail){
-        console.log("email");
-      }
-    //   if(userData[0].data.email !=usersEmail){
-    // const docRef = await addDoc(collection(db, 'LeaderBoards'), {
-    //   email:usersEmail,
-    //   score:usersScore,
-    //   name:usersName,
-       
-    // })
-    //   }else{
-    //     console.log("update me");
-    //   }
+    
 
   };
 
@@ -119,7 +102,8 @@ const Main = () => {
     }, 1000);
   };
 
-  const handleStart = () => {
+  const handleStart = async () => {
+
     setStarted(true);
     setEnded(false);
     setInput(quote.quote);
@@ -133,22 +117,22 @@ const Main = () => {
 
     const quoteText = quote.quote;
 
-    if ((key === quoteText.charAt(index)) && (outputRef.current.innerHTML=== checkRef.current.innerHTML)) {
+    if ((key === quoteText.charAt(index)) && (outputRef.current.innerHTML === checkRef.current.innerHTML)) {
       setIndex(index + 1);
       const currenChar = quoteText.substring(
         index + 1,
         index + quoteText.length
       );
       setInput(currenChar);
-     
+
       setCorrectIndex(correctIndex + 1);
       setIsError(false);
       outputRef.current.innerHTML += key;
       checkRef.current.innerHTML += key;
-      
+
     } else {
-      if (allowedKeys.includes(key) && key!=="Backspace") {
-      
+      if (allowedKeys.includes(key) && key !== "Backspace") {
+
         setErrorIndex(errorIndex + 1);
         setDelIndex(delIndex + 1)
         setIsError(true);
@@ -156,23 +140,24 @@ const Main = () => {
         outputRef.current.innerHTML += key;
       }
     }
-    if(key==="Backspace"){
-      
-      if(delIndex!==0){
+    if (key === "Backspace") {
+
+      if (delIndex !== 0) {
         setDelIndex(delIndex - 1);
-        outputRef.current.innerHTML=outputRef.current.innerHTML.substring(0,outputRef.current.innerHTML.length-1) 
+        outputRef.current.innerHTML = outputRef.current.innerHTML.substring(0, outputRef.current.innerHTML.length - 1)
       }
       // if(checkRef.current.innerHTML!==outputRef.current.innerHTML){
-        
+
       //   setDelIndex(delIndex - 1);
       //   outputRef.current.innerHTML=outputRef.current.innerHTML.substring(0,outputRef.current.innerHTML.length-1) 
       // }
-      
-      
-    
+
+
+
 
     }
-    
+
+
 
     const timeRemains = ((60 - duration) / 60).toFixed(2);
     const _accuracy = Math.floor(((index - errorIndex) / index) * 100);
@@ -192,13 +177,49 @@ const Main = () => {
   useEffect(() => {
     if (ended) localStorage.setItem("wpm", wpm);
   }, [ended, wpm]);
+  
+  const endDB =  (wpm)=>{
+    const uemail = localStorage.getItem('email')
+ 
+    const filterData = userData.filter(item => item.email === uemail) 
+    console.log(filterData,"myData")
+    // When user data not exist
+    
+  
+  // When user data exist
+  if ((filterData.length >= 1 && filterData[0].email === usersEmail) && (filterData[0] !== null || filterData[0] !== undefined) && (filterData[0].score < wpm)) {
+    const docRef =  updateDoc(doc(db, 'LeaderBoards', filterData[0].id), {
+      score: wpm,
+
+    })
+    console.log(wpm, "updateDoc")
+  }
+  else{
+
+    if ( filterData.length===0) {
+      const docRef =  addDoc(collection(db, 'LeaderBoards'), {
+        email: usersEmail,
+        score: wpm,
+        name: usersName,
+
+      })
+      console.log(wpm, "addDoc")
+    }
+  }
+}
+  useEffect(() => {
+    if (ended) 
+    endDB(wpm);
+  }, [ended]);
+
+
   useEffect(() => {
     const stroedScore = localStorage.getItem("wpm");
     if (stroedScore) setLastScore(stroedScore);
   }, []);
 
   return (
-    <div style={{backgroundColor: "black"}}>
+    <div style={{ backgroundColor: "black" }}>
       <Header />
       <Statistics
         cpm={cpm}
@@ -208,7 +229,7 @@ const Main = () => {
         accuracy={accuracy}
         errorIndex={errorIndex}
       />
- 
+
 
       {/* Start Button */}
       {ended || started ? (
@@ -239,35 +260,35 @@ const Main = () => {
       {/* Start Button end */}
       <div className="container-fluid">
 
-      <div className={styles.container}>
-       <div className={styles.leftSideInContainer}>
-           {" "}
-           {/* "<Rank <Tips /> */}
-         </div>
-        <div className={styles.rightSideInContainer}>
-        
-          <ShowText
-            quote={quote}
-            started={started}
-            ended={ended}
-            isError={isError}
-            inputRef={inputRef}
-            input={input}
-            handleKeyDown={handleKeyDown}
-          />
+        <div className={styles.container}>
+          <div className={styles.leftSideInContainer}>
+            {" "}
+            {/* "<Rank <Tips /> */}
+          </div>
+          <div className={styles.rightSideInContainer}>
 
-          <InputArea value={outputRef} />
-          
-          <span ref={checkRef} style={{ display : "none" }} ></span>
-          
-          <TypingSpeedInfo />
+            <ShowText
+              quote={quote}
+              started={started}
+              ended={ended}
+              isError={isError}
+              inputRef={inputRef}
+              input={input}
+              handleKeyDown={handleKeyDown}
+            />
+
+            <InputArea value={outputRef} />
+
+            <span ref={checkRef} style={{ display: "none" }} ></span>
+
+            <TypingSpeedInfo />
+          </div>
         </div>
       </div>
-      </div>
 
-        
+
       <Footer />
-     
+
     </div>
   );
 };
