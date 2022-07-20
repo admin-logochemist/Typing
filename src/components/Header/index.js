@@ -33,7 +33,7 @@ const users = null;
       <div style={{marginTop : 30 }}>
      
       {((usersName!==null)&&(usersName!=="Login")) ?  <div><span className={styles.zigor}>Hello! &nbsp; {`${usersName}`}</span><Button className={styles.btnpb}  onClick={signOut}> Logout</Button></div>
-       : (usersName==="Login") ? <Button className={styles.btnpb}  onClick={()=> navigate("/")}> Login</Button> : <Button className={styles.btnpb}  onClick={()=> navigate("/")}> Login</Button>}
+       : (usersName==="Login") ? <Button className={styles.btnpb}  onClick={()=> navigate("/SignIn")}> Login</Button> : <Button className={styles.btnpb}  onClick={()=> navigate("/SignIn")}> Login</Button>}
     
        </div>
       

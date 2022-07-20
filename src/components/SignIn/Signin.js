@@ -26,10 +26,11 @@ const SignIn = () => {
       // setUserData(userData=>[...userData,doc.data()])
     })
     try{
-    const filterData =  data.filter((item) => item.email === email && item.password === password)
+    const filterData = await  data.filter((item) => item.email === email && item.password === password)
     if (filterData) {
       if((filterData.length>0)&&(filterData[0].email === email)&&(filterData[0].password === password) )
       {
+        console.log("signIn name",filterData[0].name)
          localStorage.setItem('email', filterData[0].email);
         
          localStorage.setItem('displayName', filterData[0].name);
