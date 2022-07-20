@@ -6,6 +6,7 @@ import { auth } from '../../firebase';
 import { useNavigate } from "react-router-dom";
 import { updateDoc, collection, onSnapshot, orderBy, query, doc, getDocs, where, getDoc, addDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '../../firebase';
+import image1 from '../../images/fogrounz.jpg';
 
 
 
@@ -57,7 +58,7 @@ const SignIn = () => {
 <button className={styles.buttong} onClick={()=>navigate("/GuestMode")}>Guest Mode</button>
 <button className={styles.buttong} onClick={()=>navigate("/SignUp")}> SIGN UP</button>
 <div className={styles.form}>
-<img src="https://bit.ly/2tlJLoz" className={styles.imgs} /><br />
+<img src={image1} className={styles.imgs} /><br />
 <input type="text" placeholder="Email@example.com" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
 <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br />
 <button  onClick={()=>logintoApp()}> SIGN IN</button>  

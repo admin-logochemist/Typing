@@ -9,6 +9,7 @@ import { addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/fi
 import { db, storage } from  '../../firebase';
 import { useNavigate } from "react-router-dom";
 import SignIn from "./Signin";
+import image1 from '../../images/fogrounz.jpg';
 
 
 
@@ -55,7 +56,7 @@ const SignUp = () => {
  <div className="container">
   
 <div className={styles.form}>
-<img src="https://bit.ly/2tlJLoz" className={styles.imgs} /><br />
+<img src={image1} className={styles.imgs} /><br />
 <div className="mt-2">
 <input type="text"  placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/><br />
 <input autocomplete="off" type="text"  placeholder="Example@gmail.com" value={email} onChange={(e)=>setEmail(e.target.value)} /><br />
