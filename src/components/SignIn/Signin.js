@@ -33,7 +33,7 @@ const SignIn = () => {
          localStorage.setItem('email', filterData[0].email);
         
          localStorage.setItem('displayName', filterData[0].name);
-         navigate('/Main')
+         navigate('/')
   
         }
         else{

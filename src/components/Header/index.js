@@ -21,7 +21,7 @@ const signOut=()=>{
 if(usersName!=="logged Out"){
 localStorage.clear();
 const users = null;
-  navigate("/");
+  navigate("/SignIn");
 }
 }
   return (
