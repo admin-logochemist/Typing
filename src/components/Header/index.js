@@ -12,7 +12,6 @@ const Header = () => {
 useEffect(() => {
   // Perform localStorage action
   const users = localStorage.getItem('displayName')
-  console.log(users,"local storage")
   setUsersName(((users!==null)&&(users!==undefined)) ? users : "Login")
 }, [])
 

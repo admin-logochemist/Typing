@@ -17,11 +17,9 @@ const Statistics = ({
   useEffect(() => {
     // Perform localStorage action
     const users = localStorage.getItem('displayName')
-    console.log(users,"local storage")
     setUsersName(((users!==null)&&(users!==undefined)) ? users : "Login")
     
     const uemail = localStorage.getItem('email')
-    console.log(uemail,"local storage")
     setUsersEmail(((uemail!==null)&&(uemail!==undefined)) ? uemail : "Login")
   }, [])
   return (

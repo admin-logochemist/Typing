@@ -1,7 +1,7 @@
 import { Table } from "@material-ui/core";
 import React,{useState,useEffect} from "react";
 import styles from "./style.module.css";
-import { getFirestore, collection, onSnapshot, orderBy, query,where,limit } from 'firebase/firestore'; 
+import { getFirestore, collection, onSnapshot, orderBy, query,where,limit,deleteDoc,doc } from 'firebase/firestore'; 
 
 const Myscore = ({
   cpm,
@@ -20,6 +20,10 @@ const Myscore = ({
   const [usersName, setUsersName ] = useState("");
   const [usersEmail, setusersEmail ] = useState("");
   const [usersScore, setusersScore ] = useState("");
+  const [scoreData, setScoreData] = useState()
+  const [filterData, setFilterData] = useState()
+  const time = Date.now();
+
   const [flag,setFlag] = useState(false)
   const db=getFirestore()
   var data = [];
@@ -31,7 +35,6 @@ const Myscore = ({
         setUserData(snapshot.docs.map(doc => ({
           data: doc.data()
         })))
-     console.log(userData[0]?.data.email);
      
 
       })
@@ -40,24 +43,46 @@ const Myscore = ({
       }
   }
 
+  const getScore = async () => {
+    onSnapshot(
+      query(collection(db, "LeaderBoards")), (snapshot) => {
+        
+        setScoreData(snapshot.docs.map(doc => ({
+        
+         id: doc.id, ...doc.data() 
+         
+        })))
+      }) 
+      
+      
+}
+
   useEffect(() => {
+    getScore();
     getUser();
+    
     // Perform localStorage action
     const users = localStorage.getItem('displayName')
-    console.log(users,"local storage")
     setUsersName(((users!==null)&&(users!==undefined)) ? users : "Login")
     const uemail = localStorage.getItem('email')
-    console.log(uemail,"local storage")
     setusersEmail(((uemail!==null)&&(uemail!==undefined)) ? uemail : "Login")
     const wpm = localStorage.getItem('wpm')
-    console.log(wpm,"local storage")
     setusersScore(((wpm!==null)&&(wpm!==undefined)) ? wpm : "Login")
     
   }, []);
   
+ const filter = scoreData && scoreData?.filter( item => ((item?.time?.seconds*1000)+ (86400*1000*3))  < time )
+filter && filter.forEach(async(data)=>{
+await deleteDoc(doc(db, "LeaderBoards", data.id));
+console.log("data deleted")
+
+})
+
   return (
    <div className="container">
    <div className="row">
+   
+
    <div className={styles.col}>
     <div className={styles.main}>
       <p className={styles.rankHeading}>Leader Boards</p>

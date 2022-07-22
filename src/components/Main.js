@@ -53,24 +53,20 @@ const Main = () => {
         
         setUserData(snapshot.docs.map(doc => ({
           
-           id: doc.id, ...doc.data() 
-      })))
-      
-    })
-  }
+          id: doc.id, ...doc.data() 
+        })))
+        
+      })
+    }
+
   
   useEffect(() => {
-    
     getUser()
-    console.log(userData,"userData")
     const users = localStorage.getItem('displayName')
-    console.log(users, "local storage")
     setUsersName(((users !== null) && (users !== undefined)) ? users : "Login")
     const uemail = localStorage.getItem('email')
-    console.log(uemail, "local storage")
     setusersEmail(((uemail !== null) && (uemail !== undefined)) ? uemail : "Login")
     const wpm = localStorage.getItem('wpm')
-    console.log(wpm, "local storage")
     setusersScore(((wpm !== null) && (wpm !== undefined)) ? wpm : "Login")
   }, []);
   useEffect(() => {
@@ -194,7 +190,6 @@ useEffect(()=>{
     const uemail = localStorage.getItem('email')
  
     const filterData = userData.filter(item => item.email === uemail) 
-    console.log(filterData,"myData")
     // When user data not exist
     
   
@@ -204,7 +199,6 @@ useEffect(()=>{
       score: wpm,
 
     })
-    console.log(wpm, "updateDoc")
   }
   else{
 
@@ -213,9 +207,9 @@ useEffect(()=>{
         email: usersEmail,
         score: wpm,
         name: usersName,
+        time:serverTimestamp()
 
       })
-      console.log(wpm, "addDoc")
     }
   }
 }
@@ -234,7 +228,6 @@ useEffect(()=>{
     <div style={{ backgroundColor: "black" }}>
 
     <TipsPopup trigger={timedPopup} setTrigger={setTimedPopup}/>
-
       <Header />
       <Statistics
         cpm={cpm}

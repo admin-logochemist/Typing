@@ -24,7 +24,7 @@ const SignUp = () => {
   
     const registers = () => {
   
-      createUserWithEmailAndPassword(auth,email,password).then(async(userAuth) => {
+    (email && name && password) ?  createUserWithEmailAndPassword(auth,email,password).then(async(userAuth) => {
      
           setUids(userAuth.user.uid)
           localStorage.setItem('email', email);
@@ -37,12 +37,15 @@ const SignUp = () => {
           
            
           })
-        navigate('/Main')
-  
-      }).catch(function(error) {
-        var errorMessage = error.message;
-        console.log("errorMessage: "+ errorMessage )
-      });
+        navigate('/')} 
+        
+        ).catch(function(error) {
+          var errorMessage = error.message;
+          console.log("errorMessage: "+ errorMessage )
+        })
+        :
+        console.log("Please complete the form")
+      
     
     
    
@@ -53,14 +56,16 @@ const SignUp = () => {
 
 <div className={styles.main}>
 <div id="container">
- <div className="container">
-  
+ <div className={styles.container}>
+ <button className={styles.buttong} onClick={() => navigate("/GuestMode")}>Guest Mode</button>
+
+ <button className={styles.buttong} onClick={() => navigate("/SignIn")}> SIGN IN</button>
 <div className={styles.form}>
 <img src={image1} className={styles.imgs} /><br />
 <div className="mt-2">
-<input type="text"  placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/><br />
-<input autocomplete="off" type="text"  placeholder="Example@gmail.com" value={email} onChange={(e)=>setEmail(e.target.value)} /><br />
-<input type="password" autocomplete="off" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br />
+<input type="text" required placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/><br />
+<input autoComplete="off" required type="text"  placeholder="Example@gmail.com" value={email} onChange={(e)=>setEmail(e.target.value)} /><br />
+<input type="password" required autoComplete="off" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br />
 <button onClick={registers}>SIGN UP</button>   <br />
 </div>
 </div>

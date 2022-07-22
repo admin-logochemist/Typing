@@ -30,13 +30,11 @@ const App = () => {
     
 
     const users = localStorage.getItem('displayName')
-    console.log(users, "local storage")
     if(users && users.length>1){
 
       setUsersName(((users !== null) && (users !== undefined)) ? users : users)
     }
     const uemail = localStorage.getItem('email')
-    console.log(uemail, "local storage")
     setusersEmail(((uemail !== null) && (uemail !== undefined)) ? uemail : localStorage.getItem('email'))
 
     // <Route path="/"  element={ !usersName ? <Navigate to="/SignIn" /> : <Main/> } ></Route>
